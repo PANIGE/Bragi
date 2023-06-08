@@ -1,8 +1,21 @@
+using Bragi.Managers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+string? server = Environment.GetEnvironmentVariable("SERVER");
+string? db = Environment.GetEnvironmentVariable("DATABASE");
+string? username = Environment.GetEnvironmentVariable("USERNAME");
+string? password = Environment.GetEnvironmentVariable("PASSWORD");
+
+if (new[] {server, db, username, password}.Any(s => string.IsNullOrEmpty(s)))
+{
+    throw new ArgumentNullException("Config Was Not completed");
+}
+
+builder.Services.AddTransient(s => new DatabaseManager(server, db, username, password));
 
 var app = builder.Build();
 
