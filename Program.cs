@@ -1,4 +1,5 @@
 using Bragi.Managers;
+using Bragi.Managers.Middlewares;
 using Bragi.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ if (new[] {server, db, username, password}.Any(s => string.IsNullOrEmpty(s)))
 }
 
 builder.Services.AddTransient(s => new DatabaseManager(server!, db!, username!, password!));
+var sessionManager = new SessionManager();
+builder.Services.AddSingleton(sessionManager);
 
 var app = builder.Build();
 
@@ -32,6 +35,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseMiddleware<SessionMiddleWare>();
 
 
 app.MapControllerRoute(
