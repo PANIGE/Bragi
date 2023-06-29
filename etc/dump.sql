@@ -1,17 +1,6 @@
 --
 -- Table structure for table `attachements`
 --
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE IF NOT EXISTS `attachements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pointer_id` int(11) NOT NULL,
-  `filename` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `attachement_pointer_id_idx` (`pointer_id`),
-  CONSTRAINT `attachement_pointer_id` FOREIGN KEY (`pointer_id`) REFERENCES `workflow_pointers` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `roles`
@@ -83,9 +72,46 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+--
+-- Table structure for table `workflow_steps`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `workflow_steps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(64) NOT NULL,
+  `description` text NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `workflow_step_role_id_idx` (`role_id`),
+  CONSTRAINT `workflow_step_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 --
 -- Table structure for table `workflow_appointements`
 --
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE IF NOT EXISTS `workflows` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(64) NOT NULL,
+  `description` text NOT NULL,
+  `steward_user_id` int(11) NOT NULL,
+  `marketing_user_id` int(11) DEFAULT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `release_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `steward_user_id_idx` (`steward_user_id`),
+  KEY `marketing_user_id_idx` (`marketing_user_id`),
+  CONSTRAINT `marketing_user_id` FOREIGN KEY (`marketing_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `steward_user_id` FOREIGN KEY (`steward_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -170,41 +196,20 @@ CREATE TABLE IF NOT EXISTS `workflow_pointers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `workflow_steps`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE IF NOT EXISTS `workflow_steps` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(64) NOT NULL,
-  `description` text NOT NULL,
-  `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `workflow_step_role_id_idx` (`role_id`),
-  CONSTRAINT `workflow_step_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `workflows`
 --
 
+
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE IF NOT EXISTS `workflows` (
+CREATE TABLE IF NOT EXISTS `attachements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(64) NOT NULL,
-  `description` text NOT NULL,
-  `steward_user_id` int(11) NOT NULL,
-  `marketing_user_id` int(11) DEFAULT NULL,
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `release_date` datetime DEFAULT NULL,
+  `pointer_id` int(11) NOT NULL,
+  `filename` text NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `steward_user_id_idx` (`steward_user_id`),
-  KEY `marketing_user_id_idx` (`marketing_user_id`),
-  CONSTRAINT `marketing_user_id` FOREIGN KEY (`marketing_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `steward_user_id` FOREIGN KEY (`steward_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `attachement_pointer_id_idx` (`pointer_id`),
+  CONSTRAINT `attachement_pointer_id` FOREIGN KEY (`pointer_id`) REFERENCES `workflow_pointers` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
