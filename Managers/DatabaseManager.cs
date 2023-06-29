@@ -201,5 +201,11 @@ namespace Bragi.Managers
             }
         }
         #endregion
+
+        internal static async void Initialize(DatabaseManager manager)
+        {
+            string read = await File.ReadAllTextAsync("etc/dump.sql");
+            await manager.Execute(read);
+        }
     }
 }

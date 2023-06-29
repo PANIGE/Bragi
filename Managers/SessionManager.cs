@@ -1,7 +1,8 @@
-﻿using Bragi.Models;
+﻿using Bragi.Models.Sessions;
 using Bragi.Utils;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.Extensions.Primitives;
 
 namespace Bragi.Managers
 {
@@ -16,14 +17,24 @@ namespace Bragi.Managers
             Console.WriteLine("session ouverte");
         }
 
-        public SessionModel CreateSession (HttpContext context)
+        /// <summary>
+        /// Create a session only present for the current request, that is made to tell
+        /// the rest of the application that the user is not logged in.
+        /// </summary>
+        /// <returns></returns>
+        public SessionModel CreateAnonymousSession()
+        {
+            SessionModel session = new SessionModel(string.Empty);
+            return session;
+        }
+
+        public SessionModel CreateSession (HttpContext context, UserModel user)
         {
             bool found =false;
-            string sessionId = string.Empty;
             SessionModel? session = null;
             while (!found)
             {
-                sessionId = StringUtils.RandomString(32);
+                string sessionId = StringUtils.RandomString(32);
                 if (Sessions.ContainsKey(sessionId))
                     continue;
 
@@ -37,33 +48,40 @@ namespace Bragi.Managers
             return session!;
         }
 
-        public bool CheckSession(string SessionId)
+        public bool CheckSession(string sessionId)
         {
-            if(!Sessions.ContainsKey(SessionId))
+            if(!Sessions.ContainsKey(sessionId))
                 return false;
-            SessionModel session = Sessions[SessionId];
+            SessionModel session = Sessions[sessionId];
             if (session.LastActive.AddMinutes(30) >= DateTime.UtcNow)
                 return true;
-            _sessions.Remove(SessionId);
+            _sessions.Remove(sessionId);
             return true;
         }
 
         public SessionModel IdentifyUser(HttpContext context , bool updateSessionTime = false)
         {
-            context.Request.Cookies.TryGetValue("session", out string? sessionId);
+            context.Request.Headers.TryGetValue("session", out StringValues sessionIds);
+            
+            if (sessionIds.Count == 0)
+                return CreateAnonymousSession();
+            
+            string sessionId = sessionIds[0]!;
+            
             SessionModel session;
 
-            if( string.IsNullOrEmpty(sessionId) || !CheckSession(sessionId))
+            if (string.IsNullOrEmpty(sessionId) || !CheckSession(sessionId))
             {
-                session=CreateSession(context);
-                context.Response.Cookies.Append("session" , session.SessionId);
-                    new CookieOptions { Expires = DateTime.UtcNow.AddDays(1) };
+                session = CreateAnonymousSession();
                 return session;
 
             }
+            
             session = Sessions[sessionId];
+            
             if (updateSessionTime)
                 session.LastActive= DateTime.UtcNow;
+            
             return session;
         }
     }

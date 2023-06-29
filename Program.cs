@@ -19,9 +19,14 @@ if (new[] {server, db, username, password}.Any(s => string.IsNullOrEmpty(s)))
     throw new ArgumentNullException("Config Was Not completed");
 }
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient(s => new DatabaseManager(server!, db!, username!, password!));
 var sessionManager = new SessionManager();
 builder.Services.AddSingleton(sessionManager);
+
+builder.Services.AddTransient<UserManager>();
+
+DatabaseManager.Initialize(new DatabaseManager(server!, db!, username!, password!));
 
 var app = builder.Build();
 

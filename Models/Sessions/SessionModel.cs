@@ -1,13 +1,13 @@
 ﻿using System.Globalization;
 using System.Net;
 
-namespace Bragi.Models
+namespace Bragi.Models.Sessions
 {
     public class SessionModel
     {
-        public UserModel? User { get; private set ; }
+        public UserModel? User { get; init; }
 
-        public string SessionId { get; private init ; }
+        public string SessionId { get; private init; }
 
         public bool IsLoggedIn => User != null;
 

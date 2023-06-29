@@ -1,13 +1,13 @@
-﻿using Bragi.Models;
+﻿using Bragi.Models.Sessions;
 
 namespace Bragi.Managers.Middlewares
 {
-    public class SessionMidleWare
+    public class SessionMiddleWare
     {
         private readonly RequestDelegate _next;
         private readonly SessionManager _manager;
 
-        public SessionMidleWare(RequestDelegate next, SessionManager manager)
+        public SessionMiddleWare(RequestDelegate next, SessionManager manager)
         {
             _next = next;
             _manager = manager;
