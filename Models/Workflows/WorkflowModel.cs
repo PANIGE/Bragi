@@ -4,7 +4,7 @@ namespace Bragi.Models.Workflows
 {
     public class WorkflowModel
     {
-        public required string Id { get; init; }
+        public required int Id { get; init; }
 
         public required string Label { get; init; }
 
@@ -12,11 +12,11 @@ namespace Bragi.Models.Workflows
 
         public required UserModel StewardUser { get; init; }
 
-        public required UserModel? MarketingUser { get; init; }
+        public UserModel? MarketingUser { get; init; }
 
         public required DateTimeOffset DateCreation { get; init; }
 
-        public required DateTimeOffset? Daterealese { get; init; }
+        public  DateTimeOffset? Daterealese { get; init; }
     }
 }
 

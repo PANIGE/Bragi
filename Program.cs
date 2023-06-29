@@ -25,6 +25,7 @@ var sessionManager = new SessionManager();
 builder.Services.AddSingleton(sessionManager);
 
 builder.Services.AddTransient<UserManager>();
+builder.Services.AddTransient<WorkflowManager>();
 
 DatabaseManager.Initialize(new DatabaseManager(server!, db!, username!, password!));
 
