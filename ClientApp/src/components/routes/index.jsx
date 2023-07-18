@@ -1,4 +1,4 @@
-import { Counter } from "./components/Counter";
+/*import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 
@@ -18,3 +18,4 @@ const AppRoutes = [
 ];
 
 export default AppRoutes;
+*/
