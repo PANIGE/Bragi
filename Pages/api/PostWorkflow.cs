@@ -43,6 +43,7 @@ namespace Bragi.Pages.api
             };
 
             _workflowManager.Insert(model);
+            return Ok();
         }
 
 
