@@ -1,5 +1,6 @@
 import React from 'react';
 import './profil.css';
+import {ModalButton} from '../../../base/modalButton/ModalButton.jsx'
 
 export function Profil () {
   const profil = {
@@ -26,12 +27,13 @@ export function Profil () {
         </div>
         <div className="content-info">
           <div className="photo-container">
-            <img src={profil.photo}/>
+            <img src={profil.photo} alt='Profil face'/>
           </div>
           <div className="profil-info">
             <h3>{`${profil.prenom} ${profil.nom}`}</h3>
             <p>Lieu de travail : {profil.lieuTravail}</p>
           </div>
+          <ModalButton/>
         </div>
       </div>
       <div className="info-container">
