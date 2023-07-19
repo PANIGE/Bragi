@@ -1,6 +1,6 @@
 import React from 'react';
 import './profil.css';
-import { ModalButton } from 'ClientApp\src\components\base\modalButton\ModalButton.jsx'
+import { ModalButton } from './../../../base/modalButton/ModalButton.jsx';
 
 export function Profil () {
   const profil = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Modal from 'ClientApp\src\components\base\modal\Modal.jsx';
+import { Modal } from './../modal/Modal.jsx';
 
-export default function ModalButton() {
+export function ModalButton() {
   const [openModal, setOpenModal] = useState(false);
 
   return (
