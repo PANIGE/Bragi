@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace Bragi.Pages.api
 {
     [ApiController]
-    [Route("api/user/{id}")]
-    public class SingleUser : ControllerBase
+    
+    public class Users : ControllerBase
     {
         private readonly UserManager _userManager;
         private readonly HttpContext _context;
         private readonly SessionManager _sessionManager;
         private readonly DatabaseManager _databaseManager;
-        public SingleUser(UserManager userManager, IHttpContextAccessor context, SessionManager sessionManager, DatabaseManager databaseManager)
+        public Users(UserManager userManager, IHttpContextAccessor context, SessionManager sessionManager, DatabaseManager databaseManager)
         {
             _userManager = userManager;
             _context = context.HttpContext!;
@@ -25,6 +25,7 @@ namespace Bragi.Pages.api
         }
 
         [HttpGet]
+        [Route("api/user/{id}")]
         public async Task<IActionResult> Get(int id)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
@@ -35,6 +36,14 @@ namespace Bragi.Pages.api
             if (user == null)
                 return NotFound();
             return Ok(user);
+        }
+
+
+        [HttpGet]
+        [Route("api/users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            return Ok(await _userManager.GetAllUsers());
         }
 
 

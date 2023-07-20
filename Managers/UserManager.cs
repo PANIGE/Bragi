@@ -17,7 +17,7 @@ namespace Bragi.Managers
         /// </summary>
         /// <param name="displayName">display name to search in</param>
         /// <returns>list of users matching GetAllUsers</returns>
-        public async Task<List<UserModel>> GetAllUsersMatching(string displayName)
+        public async Task<IEnumerable<UserModel>> GetAllUsersMatching(string displayName)
         {
             var userIds = await _dbManager.FetchAll<int>("SELECT id FROM users WHERE display_name LIKE @login",
                 new Dictionary<string, object>() { ["login"] = $"%{displayName}%" });
@@ -35,7 +35,7 @@ namespace Bragi.Managers
         /// Get All users
         /// </summary>
         /// <returns>All users</returns>
-        public async Task<List<UserModel>> GetAllUsers()
+        public async Task<IEnumerable<UserModel>> GetAllUsers()
         {
             var userIds = await _dbManager.FetchAll<int>("SELECT id FROM users");
 
@@ -53,7 +53,7 @@ namespace Bragi.Managers
         /// </summary>
         /// <param name="role">role to be filtered with</param>
         /// <returns> return list of users</returns>
-        public async Task<List<UserModel>> GetAllUserWithRole(RoleModel role)
+        public async Task<IEnumerable<UserModel>> GetAllUserWithRole(RoleModel role)
         {
             var userIds = await _dbManager.FetchAll<int>("SELECT id FROM users WHERE role_id = @role",
                 new Dictionary<string, object>() { ["role"] = role.Id });
