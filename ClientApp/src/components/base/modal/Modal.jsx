@@ -3,8 +3,8 @@ import './modal.css';
 
 export function Modal ({ open, onClose }) {
   if (!open) return null;
-  function clickBlue () {
-    document.getElementsByClassName("button 1").classList.add("choice-onclick-blue");
+  function clickBlue (buttonNumber) {
+    document.getElementsByClassName("button "+buttonNumber).classList.add("choice-onclick-blue");
   };
 
   return (
@@ -16,13 +16,13 @@ export function Modal ({ open, onClose }) {
         className='modalContainer'>
           <p className='closeBtn' onClick={onClose}>X</p>
           <div className='report-choice'>
-            <button className="button 1" onclick="clickBlue()">
+          <button className="button 1" onclick="clickBlue(1)">
               <i class="fa-regular fa-circle-xmark fa-2xl"></i>
             </button>
-            <button className="button 2" onclick="clickBlue()">
+            <button className="button 2" onclick="clickBlue(1)">
               <i class="fa-regular fa-circle-exclamation fa-2xl"></i>
             </button>
-            <button className="button 3" onclick="clickBlue()">
+            <button className="button 3" onclick="clickBlue(1)">
               <i class="fa-regular fa-circle-check fa-2xl"></i>
             </button>
           </div>
