@@ -115,5 +115,22 @@ namespace Bragi.Managers
             };
 
         }
+
+
+        public async Task<RoleModel?> GetRoleById(int id)
+        {
+            var role = await _dbManager.FetchOne("SELECT * FROM roles WHERE id = @role;",
+                new Dictionary<string, object> { ["role"] = id });
+
+            if (role == null)
+                return null;
+
+            return new RoleModel()
+            {
+                Id = (int)role["id"],
+                Label = (string)role["label"],
+                HoldRight = (int)role["hold_rights"] == 1
+            };
+        }
     }
 }

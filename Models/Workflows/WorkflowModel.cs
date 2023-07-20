@@ -16,7 +16,7 @@ namespace Bragi.Models.Workflows
 
         public required DateTimeOffset DateCreation { get; init; }
 
-        public  DateTimeOffset? Daterealese { get; init; }
+        public  DateTimeOffset? DateRealese { get; init; }
     }
 }
 

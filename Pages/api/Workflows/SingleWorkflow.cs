@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace Bragi.Pages.api
 {
     [ApiController]
-    [Route("api/user/{id}")]
+    [Route("api/workflows/{id}")]
     public class SingleWorkflow : ControllerBase
     {
         private readonly HttpContext _context;
@@ -50,7 +50,7 @@ namespace Bragi.Pages.api
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            if (_databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id", new Dictionary<string, object>() { ["id"] = id }) == null)
+            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id", new Dictionary<string, object>() { ["id"] = id }) == null)
             {
                 return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow", "A workflow with this id does not exist."));
             }

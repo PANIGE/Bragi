@@ -78,4 +78,8 @@
   <ItemGroup>
     <None Include="C:\Users\nicol\source\repos\Bragi\.editorconfig" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Storage\Avatars\" />
+  </ItemGroup>
 </Project>
