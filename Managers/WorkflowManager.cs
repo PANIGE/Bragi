@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using Bragi.Models.Sessions;
 using Bragi.Models.Workflows;
+using System.Linq;
 using Bragi.Models.Workflows.Axes;
 
 namespace Bragi.Managers
@@ -32,7 +33,7 @@ namespace Bragi.Managers
                 Id = (int)Workflow["id"],
                 Label = (string)Workflow["label"],
                 Description = (string)Workflow["description"],
-                StewardUser = await _userManager.GetUserById((int)Workflow["steward_user_id"]),
+                StewardUser = (await _userManager.GetUserById((int)Workflow["steward_user_id"]))!,
                 MarketingUser = Workflow["marketing_user_id"] != null
                     ? await _userManager.GetUserById((int)Workflow["marketing_user_id"])
                     : null,
@@ -66,16 +67,16 @@ namespace Bragi.Managers
                 .Select(s => s.Result!).ToArray();
         }
 
-
-
-        public async Task<WorkflowModel> GetAllWorkflows()
+        public async Task<WorkflowModel[]> GetAllWorkflows()
         {
-            throw new NotImplementedException();
+            var workflowsIds = await _dbManager.FetchAll<int>("SELECT id FROM workflows");
+            return workflowsIds.Select(async row => await GetWorkflowById(row["id"])).Select(s => s.Result!).ToArray();
         }
 
         public void Insert(WorkflowModel model)
         {
-            throw new NotImplementedException();
+            _ =_dbManager.Execute("INSERT workflow(label, description, steward_user, marketing_user, date_creation VALUE (@label, @description, @stewarduser, @marketinguser, @datecreation)",
+            new Dictionary<string, object> {["label"] = model.Label, ["description"] = model.Description, ["stewarduser"] = model.StewardUser, ["marketinguser"] = model.MarketingUser!, ["datecreation"] = model.DateCreation} );
         }
 
         public async Task<WPointer[]> GetPointers(int workflowId)
