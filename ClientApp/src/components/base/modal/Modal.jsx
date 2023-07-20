@@ -10,11 +10,11 @@ export function Modal ({ open, onClose }) {
           e.stopPropagation();
         }}
         className='modalContainer'>
-          <p className='closeBtn' onClick={onClose}>
-            X
-          </p>
+          <p className='closeBtn' onClick={onClose}>X</p>
           <div className='report-choice'>
-
+            <i class="fa-regular fa-circle-xmark fa-2xl"></i>      
+            <i class="fa-regular fa-circle-exclamation fa-2xl"></i>
+            <i class="fa-regular fa-circle-check fa-2xl"></i>
           </div>
           <div className='report-info'>
             <label for="destinataire">Destinataire :</label>

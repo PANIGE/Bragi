@@ -50,6 +50,8 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .photo-container img {
@@ -64,6 +66,8 @@
   padding: 10px;
   text-align: left;
   width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .profil-info h3 {

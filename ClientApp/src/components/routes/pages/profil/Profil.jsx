@@ -4,14 +4,14 @@ import { ModalButton } from './../../../base/modalButton/ModalButton.jsx';
 
 export function Profil () {
   const profil = {
-    titre: 'Identité & informations personnelle',
+    titre: 'Informations personnelle',
     description: 'Pour éditer vos informations prenez contact avec l\'organisme administratif',
     metier: 'Régisseur',
     photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.tjUOUBGnthmW762mbRAFdQHaE8%26pid%3DApi&f=1&ipt=1d332fcd1e14de39844b9fc93c596509c0f3ea0d339e91f5b1ead65670824628&ipo=images',
     nom: 'Ritchard',
     prenom: 'Samuel',
     lieuTravail: 'Paris, Lille',
-    mail: 'sammuel.ritchard@mail.com',
+    mail: 'samuel.ritchard@mail.com',
     numeroTelephone: '+336 87 87 56 44'
   };
 

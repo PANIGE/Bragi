@@ -1,5 +1,6 @@
 .modalButton {
     padding: 10px 20px;
+    margin: 20px;
   }
   
   .overlay {
@@ -12,7 +13,7 @@
     max-width: 800px;
     width: 100%;
     position: fixed;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -31,6 +32,23 @@
     right: 20px;
   }
 
+  .report-choice {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+  }
+
+  .report-choice i {
+        width: 50px;
+        padding: 50px;
+        margin-right: 50px;
+        margin-left: 50px;
+        border: solid ;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+    }
+
   .report-info {
     display: flex;
     flex-direction: column;
@@ -38,10 +56,8 @@
     padding: 10px;
   }
 
-  label,
-  textarea,
-  input {
-    margin: 10px;
+  .report-info label {
+    margin-top: 20px;
   }
   
   .btnContainer {
