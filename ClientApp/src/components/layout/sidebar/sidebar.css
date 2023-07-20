@@ -94,3 +94,21 @@
 
     transition: 0.2s;
 }
+
+.activeNavLink {
+    background-color: var(--gray-100);
+
+    text-decoration: none;
+    color: var(--gray-800);
+
+    transition: 0.2s;
+}
+
+.activeNavLink:hover {
+    background-color: var(--gray-200);
+
+    text-decoration: none;
+    color: var(--gray-200);
+
+    transition: 0.2s;
+}

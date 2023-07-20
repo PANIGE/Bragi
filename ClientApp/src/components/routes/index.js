@@ -1,6 +1,7 @@
 import { Profil } from './pages/profil/Profil.jsx';
 import { Login } from './pages/login/Login.jsx';
 import { Dashboard } from './pages/dashboard/Dashboard.jsx';
+import { ProjectList } from './pages/project/overview/ProjectList.jsx';
 
 const AppRoutes = [
   {
@@ -25,8 +26,8 @@ const AppRoutes = [
     // require: 'REGISSEUR', // Exemple : La page des messages nécessite d'être un utilisateur ayant le rôle REGISSEUR pour y accéder
   },
   {
-    path: '/projets',
-    element: <h1>Projets</h1>,
+    path: '/projects',
+    element: <ProjectList />,
     // require: 'AUTH,REGISSEUR', // La page des projets nécessite d'être connecté et d'avoir le rôle REGISSEUR pour y accéder
   },
   {
