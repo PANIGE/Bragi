@@ -116,6 +116,12 @@ namespace Bragi.Managers
 
         }
 
+        public async Task<RoleModel[]> GetAllRoles()
+        {
+            return (await _dbManager.FetchAll<int>("SELECT id FROM roles"))
+                .Select(async s => await GetRoleById(s["id"]))
+                .Select(s => s.Result!).ToArray();
+        }
 
         public async Task<RoleModel?> GetRoleById(int id)
         {
