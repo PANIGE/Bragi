@@ -6,14 +6,8 @@ export function ModalButton() {
 
   return (
     <div>
-      <button 
-      onClick={() => setOpenModal(true)} 
-      className='modalButton'>
-        Modal
-      </button>
-      <Modal
-      open={openModal} 
-      onClose={() => setOpenModal(false)} />
+      <button onClick={() => setOpenModal(true)} className='modalButton'>Modal</button>
+      <Modal open={openModal} onClose={() => setOpenModal(false)} />
       </div>
   );
 }

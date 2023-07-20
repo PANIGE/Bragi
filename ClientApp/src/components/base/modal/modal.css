@@ -1,6 +1,7 @@
 .modalButton {
     padding: 10px 20px;
     margin: 20px;
+    border-radius: 5px;
   }
   
   .overlay {
@@ -30,6 +31,7 @@
     margin: 0;
     top: 10px;
     right: 20px;
+    cursor: pointer;
   }
 
   .report-choice {
@@ -38,15 +40,25 @@
     display: flex;
   }
 
-  .report-choice i {
+  .report-choice button {
         width: 50px;
         padding: 50px;
         margin-right: 50px;
         margin-left: 50px;
-        border: solid ;
-        border-radius: 8px;
+        border: solid;
+        border-radius: 5px;
         display: flex;
         justify-content: center;
+        background-color:#ffffff;
+    } .report-choice button:hover {
+        background-color: rgba(0, 148, 255, 0.20);
+    } 
+
+    .choice-onclick-blue {
+        border-color: rgb(0, 148, 255);
+    }
+    .choice-onclick-blue i {
+        color:rgb(0, 148, 255);
     }
 
   .report-info {
@@ -74,13 +86,13 @@
   .btnPrimary {
     background-color: #0094FF;
     color: white;
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
   .btnOutline {
     background-color: white;
     color: #0094FF;
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
   @media screen and (max-width: 600px) {
