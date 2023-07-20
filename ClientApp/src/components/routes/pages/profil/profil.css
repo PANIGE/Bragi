@@ -1,7 +1,6 @@
 .profil {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 20px;
   font-family: Arial, sans-serif;
 }
 
@@ -35,7 +34,7 @@
 }
 
 .metier {
-  background-color: #007bff;
+  background-color: #0094FF;
   color: white;
   padding: 10px;
   border-top-left-radius: 10px;
@@ -54,8 +53,8 @@
 }
 
 .photo-container img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 10%;
   object-fit: cover;
   object-position: center;

@@ -9,7 +9,9 @@ const Sidebar = () => {
     return (
         <div className="sidebarContainer">
             <div className="sidebarHeader">
+            <NavLink to="/profil" className="SidebarLink" activeclassname="activeNavLink">
                 <span id="userIcon"></span>
+            </NavLink>
                 <span className="userIdentity">
                     <span className="userName">John Doe</span>
                     <span className="userRole">Administrateur</span>
