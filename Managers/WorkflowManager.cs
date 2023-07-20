@@ -3,6 +3,7 @@ using Bragi.Models.Sessions;
 using Bragi.Models.Workflows;
 using System.Linq;
 using Bragi.Models.Workflows.Axes;
+using System.Reflection;
 
 namespace Bragi.Managers
 {
@@ -75,7 +76,7 @@ namespace Bragi.Managers
 
         public void Insert(WorkflowModel model)
         {
-            _ =_dbManager.Execute("INSERT workflow(label, description, steward_user, marketing_user, date_creation VALUE (@label, @description, @stewarduser, @marketinguser, @datecreation)",
+            _ =_dbManager.Execute("INSERT workflow(label, description, steward_user, marketing_user, date_creation) VALUE (@label, @description, @stewarduser, @marketinguser, @datecreation)",
             new Dictionary<string, object> {["label"] = model.Label, ["description"] = model.Description, ["stewarduser"] = model.StewardUser, ["marketinguser"] = model.MarketingUser!, ["datecreation"] = model.DateCreation} );
         }
 
@@ -129,6 +130,12 @@ namespace Bragi.Managers
             return (await _dbManager.FetchAll<int>("SELECT id FROM states"))
                 .Select(async s => await GetStateById(s["id"]))
                 .Select(s => s.Result!).ToArray();
+        }
+
+        public void InsertPointer(int id, UserModel user, StateModel state, WStepModel step, string description)
+        {
+            _ = _dbManager.Execute("INSERT INTO workflow_pointers(workflow_id, step_id, user_id, state_id, description) VALUE(@id, @step, @user, @state, @description)",
+            new Dictionary<string, object> { ["id"] = id, ["step"] = step, ["user"] = user, ["state"] = step, ["description"] = description });
         }
     }
 }

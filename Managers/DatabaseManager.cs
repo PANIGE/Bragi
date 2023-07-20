@@ -71,7 +71,7 @@ namespace Bragi.Managers
         /// Fetch a row of an already Openned Reader
         /// </summary>
         /// <returns>the row returned</returns>
-        public async Task<Dictionary<string, object>?> FetchOne()
+        public async Task<Dictionary<string, object>?> FetchOne(string v, Dictionary<string, Models.Sessions.UserModel> dictionary)
         {
             return await FetchOne<object>();
         }
@@ -97,8 +97,7 @@ namespace Bragi.Managers
         }
 
         /// <summary>
-        /// Open a connection, fetch every row, then close the connection. This can be really Memory Heavy for big database, consider
-        /// opening a reader and reading row by row
+        /// Open a connection, fetch every row, then close the connection. This can be really Memory Heavy for big database, consider 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
@@ -123,20 +122,6 @@ namespace Bragi.Managers
 
             await CloseReader();
             return result;
-        }
-
-
-        /// <summary>
-        /// Open a connection, fetch every row, then close the connection. This can be really Memory Heavy for big database, consider
-        /// opening a reader and reading row by row
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public async Task<List<Dictionary<string, object>>> FetchAll(string query,
-            IDictionary<string, object>? parameters = null)
-        {
-            return await FetchAll<object>(query, parameters);
         }
 
         public async Task Execute(string query, IDictionary<string, object>? parameters = null)
