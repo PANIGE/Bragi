@@ -9,13 +9,13 @@ import showToast from './../../../base/Toaster';
 import './login.css';
 
 export const Login = () => {
-  const [mail, setMail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/autdh', {
-        mail: mail,
+      const response = await axios.post('/api/auth', {
+        username: username,
         password: password,
       });
 
@@ -41,7 +41,7 @@ export const Login = () => {
           <div className="loginForm">
             <div className="verticalContainer">
               <label htmlFor="mail">Email</label>
-              <input className="textInput" type="text" value={mail} onChange={(e) => setMail(e.target.value)} />
+              <input className="textInput" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             </div>
             <div className="verticalContainer">
               <label htmlFor="password">Mot de passe</label>

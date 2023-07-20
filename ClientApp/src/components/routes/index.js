@@ -2,6 +2,9 @@ import { Profil } from './pages/profil/Profil.jsx';
 import { Login } from './pages/login/Login.jsx';
 import { Dashboard } from './pages/dashboard/Dashboard.jsx';
 import { ProjectList } from './pages/project/overview/ProjectList.jsx';
+import { ProjectCreation } from './pages/project/creation/ProjectCreation.jsx';
+import { ProjectTask } from './pages/project/task/ProjectTask.jsx';
+import { Messaging } from './pages/notification/Messaging.jsx';
 
 const AppRoutes = [
   {
@@ -15,6 +18,10 @@ const AppRoutes = [
     element: <Profil />,
     // require: 'AUTH', // La page de profil nécessite d'être connecté pour y accéder
   },
+   {
+    path: '/notifications',
+    element: <Messaging />,
+   },
   {
     path: '/dashboard',
     element: <Dashboard />,
@@ -26,9 +33,17 @@ const AppRoutes = [
     // require: 'REGISSEUR', // Exemple : La page des messages nécessite d'être un utilisateur ayant le rôle REGISSEUR pour y accéder
   },
   {
+    path: 'new-projects',
+    element: <ProjectCreation/>,
+  },
+  {
     path: '/projects',
     element: <ProjectList />,
     // require: 'AUTH,REGISSEUR', // La page des projets nécessite d'être connecté et d'avoir le rôle REGISSEUR pour y accéder
+  },
+  {
+    path: '/tasks',
+    element: <ProjectTask/>,
   },
   {
     path: '*',

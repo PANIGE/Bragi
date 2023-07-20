@@ -9,7 +9,7 @@ import "./projectList.css";
 
 export function ProjectList () {
     return (
-        <div className="projectListContainer">
+        <div className="projectContainer">
             <Header />
             <div className="contentHeader">
                 <h2>Projets</h2>

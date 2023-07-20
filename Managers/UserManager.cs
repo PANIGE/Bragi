@@ -95,7 +95,7 @@ namespace Bragi.Managers
                                                  "u.pw_hash, u.role_id, r.label, r.hold_rights " +
                                                  "FROM users u " +
                                                  "LEFT JOIN roles r on u.role_id = r.id " +
-                                                 "WHERE id = @user;",
+                                                 "WHERE u.id = @user;",
                 new Dictionary<string, object> { ["user"] = id });
             if (user == null)
                 return null;

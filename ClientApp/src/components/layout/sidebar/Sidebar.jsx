@@ -31,6 +31,15 @@ const Sidebar = () => {
                     <i className="fas fa-tasks fa-xl"></i>
                     Tâches
                 </NavLink>
+                <NavLink to="/notifications" className="SidebarLink" activeclassname="activeNavLink">
+                    <i className="fas fa-bell fa-xl"></i>
+                    Notifications
+                </NavLink>
+                
+                <NavLink to="/upload" className="SidebarLink" activeclassname="activeNavLink">
+                    <i className="fas fa-upload fa-xl"></i>
+                    Envoyer un fichier
+                </NavLink>
                 <NavLink to="/help" className="SidebarLink" activeclassname="activeNavLink">
                     <i className="fas fa-question-circle fa-xl"></i>
                     Aide

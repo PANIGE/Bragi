@@ -27,6 +27,14 @@
   --blue-600: #09242E;
   --blue-700: #071A21;
   --blue-800: #041116;
+
+  --primary: #1A3645;
+  --secondary: #30637C;
+
+  --red : #FF0000;
+  --orange : #FFA500;
+  --green : #4ECD00;
+  
 }
 
 .dark {
@@ -47,6 +55,7 @@
   --blue-200: #C0E0EF;
   --blue-300: #478FB4;
   --blue-400: #30637C;
+  --blue-450: #0094FF;
   --blue-500: #1A3645;
   --blue-600: #09242E;
   --blue-700: #071A21;
@@ -56,6 +65,9 @@
   --secondary: #30637C;
 
   --red : #FF0000;
+  --orange : #FFA500;
+  --green : #4ECD00;
+  
 
 }
 
