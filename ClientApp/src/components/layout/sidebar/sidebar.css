@@ -1,0 +1,96 @@
+.sidebarContainer {
+    width: 400px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 10vh;
+
+    background: linear-gradient(120deg, #F9EEEB 0%, #E0E2E4 100%);
+    padding: 30px;  
+}
+
+.sidebarHeader{
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+#userIcon{
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+    background-image: url("https://images.pexels.com/photos/9950569/pexels-photo-9950569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+}
+
+.userIdentity{
+    width: auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 5px;
+
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.sidebarNav {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    row-gap: 20px;
+}
+
+.SidebarLink {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 30px;
+
+    font-size: 18px;
+
+    padding: 0 20px 0 20px;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--gray-700);
+}
+
+.SidebarLink:hover {
+    background-color: var(--blue-600);
+
+    text-decoration: none;
+    color: var(--gray-100);
+
+    transition: 0.2s;
+}

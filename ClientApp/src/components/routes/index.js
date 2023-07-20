@@ -1,5 +1,6 @@
 import { Profil } from './pages/profil/Profil.jsx';
 import { Login } from './pages/login/Login.jsx';
+import { Dashboard } from './pages/dashboard/Dashboard.jsx';
 
 const AppRoutes = [
   {
@@ -15,7 +16,7 @@ const AppRoutes = [
   },
   {
     path: '/dashboard',
-    element: <h1>Dashboard</h1>,
+    element: <Dashboard />,
     // require: 'MARKETING', // Exemple : La page du dashboard nécessite d'être un utilisateur ayant le rôle MARKETING pour y accéder
   },
   {
@@ -30,7 +31,7 @@ const AppRoutes = [
   },
   {
     path: '*',
-    element: <Login />,
+    element: <h1>404 - Page non trouvée</h1>,
   }
 ];
 

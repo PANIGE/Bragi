@@ -1,0 +1,44 @@
+.btn-gray {
+    background-color: var(--gray-400);
+    color: var(--gray-100);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-gray:hover {
+    background-color: var(--gray-300);
+    transition: 0.2s;
+
+    cursor: pointer;
+}
+
+.btn-gray:active {
+    background-color: var(--gray-500);
+}
+
+.btn-transparent {
+    background-color: transparent;
+    color: var(--gray-800);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.btn-transparent:hover {
+    scale: 1.1;
+    transition: 0.2s;
+}

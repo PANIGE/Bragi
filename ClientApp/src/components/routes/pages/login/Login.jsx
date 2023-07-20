@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+
+import { NavLink } from 'react-router-dom';
+import SmartButton from './../../../base/Button';
+
 import axios from 'axios';
-import showToast  from '../../../base/Toaster';
+import showToast from './../../../base/Toaster';
+
+import './login.css';
 
 export const Login = () => {
-  const [username, setUsername] = useState('');
+  const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-
       const response = await axios.post('/api/autdh', {
-        username: username,
+        mail: mail,
         password: password,
       });
 
@@ -23,10 +28,30 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Se connecter</button>
+    <div className="loginContainer">
+      <div className="presentation"></div>
+      <div className="login">
+        <NavLink to="/help" className="link"> Besoin d’aide ? </NavLink>
+        <div className="loginContent">
+          <span className="logo"></span>
+          <div className="speach">
+            <h3>Connectez-vous</h3>
+            <p>Donnez le tempo à vos gestions de projets</p>
+          </div>
+          <div className="loginForm">
+            <div className="verticalContainer">
+              <label htmlFor="mail">Email</label>
+              <input className="textInput" type="text" value={mail} onChange={(e) => setMail(e.target.value)} />
+            </div>
+            <div className="verticalContainer">
+              <label htmlFor="password">Mot de passe</label>
+              <input className="textInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+          </div>
+          <SmartButton width={200} height={50} onClick={handleLogin} color="gray"> Se connecter </SmartButton>
+
+        </div>
+      </div>
     </div>
   );
 };
