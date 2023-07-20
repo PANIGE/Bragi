@@ -18,7 +18,8 @@ namespace Bragi.Pages.api
         private readonly DatabaseManager _databaseManager;
         private readonly UserManager _userManager;
 
-        public WorkflowParticipants(DatabaseManager databaseManager, IHttpContextAccessor context, SessionManager sessionManager, UserManager userManager)
+        public WorkflowParticipants(DatabaseManager databaseManager, IHttpContextAccessor context,
+            SessionManager sessionManager, UserManager userManager)
         {
             _context = context.HttpContext!;
             _sessionManager = sessionManager;
@@ -35,14 +36,17 @@ namespace Bragi.Pages.api
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id", new Dictionary<string, object>() { ["id"] = id }) == null)
+            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id",
+                    new Dictionary<string, object>() { ["id"] = id }) == null)
             {
-                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow", "A workflow with this id does not exist."));
+                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow",
+                    "A workflow with this id does not exist."));
             }
 
 
-            var users = (await _databaseManager.FetchAll<int>("SELECT id FROM workflow_assignments WHERE workflow_id = @id", 
-                new Dictionary<string, object>() { ["id"] = id }))
+            var users = (await _databaseManager.FetchAll<int>(
+                    "SELECT id FROM workflow_assignments WHERE workflow_id = @id",
+                    new Dictionary<string, object>() { ["id"] = id }))
                 .Select(async s => await _userManager.GetUserById(s["id"]))
                 .Select(s => s.Result!).ToArray();
 
@@ -57,17 +61,24 @@ namespace Bragi.Pages.api
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id", new Dictionary<string, object>() { ["id"] = id }) == null)
+            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id",
+                    new Dictionary<string, object>() { ["id"] = id }) == null)
             {
-                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow", "A workflow with this id does not exist."));
+                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow",
+                    "A workflow with this id does not exist."));
             }
 
-            if (await _databaseManager.FetchOne("SELECT 1 FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid", new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId }) != null)
+            if (await _databaseManager.FetchOne(
+                    "SELECT 1 FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid",
+                    new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId }) != null)
             {
-                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "assignments", "This user is already assigned to this workflow."));
+                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "assignments",
+                    "This user is already assigned to this workflow."));
             }
 
-            await _databaseManager.Execute("INSERT INTO workflow_assignments (workflow_id, user_id, step_id) VALUES (@id, @uid, @sid)", new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId, ["sid"] = stepId });
+            await _databaseManager.Execute(
+                "INSERT INTO workflow_assignments (workflow_id, user_id, step_id) VALUES (@id, @uid, @sid)",
+                new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId, ["sid"] = stepId });
             return NoContent();
         }
 
@@ -80,17 +91,25 @@ namespace Bragi.Pages.api
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id", new Dictionary<string, object>() { ["id"] = id }) == null)
+            if (await _databaseManager.FetchOne("SELECT 1 FROM workflows WHERE id = @id",
+                    new Dictionary<string, object>() { ["id"] = id }) == null)
             {
-                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow", "A workflow with this id does not exist."));
+                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "workflow",
+                    "A workflow with this id does not exist."));
             }
 
-            if (await _databaseManager.FetchOne("SELECT 1 FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid", new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId }) == null)
+            if (await _databaseManager.FetchOne(
+                    "SELECT 1 FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid",
+                    new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId }) == null)
             {
-                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "assignments", "This user is not assigned to this workflow."));
+                return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "assignments",
+                    "This user is not assigned to this workflow."));
             }
 
-            await _databaseManager.Execute("DELETE FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid", new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId });
+            await _databaseManager.Execute(
+                "DELETE FROM workflow_assignments WHERE workflow_id = @id AND user_id = @uid",
+                new Dictionary<string, object>() { ["id"] = id, ["uid"] = userId });
             return NoContent();
         }
     }
+}

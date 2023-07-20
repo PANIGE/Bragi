@@ -11,7 +11,7 @@ namespace Bragi.Pages.api
 {
     [ApiController]
     [Route("api/workflows")]
-    public class Workflows : ControllerBase
+    public class MultipleWorkflows : ControllerBase
     {
         
         private readonly HttpContext _context;
@@ -19,7 +19,7 @@ namespace Bragi.Pages.api
         private readonly SessionManager _sessionManager;
         private readonly UserManager _userManager;
 
-        public Workflows(IHttpContextAccessor context, WorkflowManager workflowManager, SessionManager sessionManager, UserManager userManager)
+        public MultipleWorkflows(IHttpContextAccessor context, WorkflowManager workflowManager, SessionManager sessionManager, UserManager userManager)
         {
             _context = context.HttpContext!;
             _workflowManager = workflowManager;
