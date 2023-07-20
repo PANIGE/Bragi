@@ -123,6 +123,12 @@ namespace Bragi.Managers
                 Description = (string)state["description"],
             };
         }
-        
+
+        public async Task<StateModel[]> GetAllStates()
+        {
+            return (await _dbManager.FetchAll<int>("SELECT id FROM states"))
+                .Select(async s => await GetStateById(s["id"]))
+                .Select(s => s.Result!).ToArray();
+        }
     }
 }

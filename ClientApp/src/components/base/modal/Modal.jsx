@@ -1,4 +1,5 @@
 import React from "react";
+import './modal.css';
 
 export function Modal ({ open, onClose }) {
   if (!open) return null;
@@ -9,25 +10,38 @@ export function Modal ({ open, onClose }) {
           e.stopPropagation();
         }}
         className='modalContainer'>
-        <img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.sldsThi-4O7viMDMp527cgHaE8%26pid%3DApi&f=1&ipt=c5a856547de8aafa515b2f33457e91fc897dbb98c3879fc101cbee6f2915be36&ipo=images' alt={"image de profil"}/>
-        <div className='modalRight'>
-          <p className='closeBtn' onClick={onClose}>
-            X
-          </p>
-          <div className='content'>
-            <p>Do you want a</p>
-            <h1>$20 CREDIT</h1>
-            <p>for your first tade?</p>
+          <p className='closeBtn' onClick={onClose}>X</p>
+          <div className='report-choice'>
+            <i class="fa-regular fa-circle-xmark fa-2xl"></i>      
+            <i class="fa-regular fa-circle-exclamation fa-2xl"></i>
+            <i class="fa-regular fa-circle-check fa-2xl"></i>
+          </div>
+          <div className='report-info'>
+            <label for="destinataire">Destinataire :</label>
+            <select id="destinataire" name="destinataire">
+              <option value="">- Choisissez le destinataire -</option>
+              <option value="Michelle Ernond">Michelle Ernond</option>
+              <option value="Jordan Martinez">Jordan Martinez</option>
+              <option value="Camille Lefèvre">Camille Lefèvre</option>
+              <option value="Mathis Moreau">Mathis Moreau</option>
+              <option value="Hugo Lambert">Hugo Lambert</option>
+              <option value="Clémence Rousseau">Clémence Rousseau</option>
+              <option value="Amélie Girard">Amélie Girard</option>
+              <option value="Éléonore Delabois">Éléonore Delabois</option>
+            </select>
+            <label for="objet">Objet :</label>
+            <input type="text" id="objet" name="objet"/>
+            <label for="description">Description :</label>
+            <textarea id="description" name="description"/>
           </div>
           <div className='btnContainer'>
-            <button className='btnPrimary'>
-              <span className='bold'>YES</span>, I love NFT's
+            <button className='btnPrimary' onClick={onClose}>
+              <span>Envoyer</span>
             </button>
-            <button className='btnOutline'>
-              <span className='bold'>NO</span>, thanks
+            <button className='btnOutline' onClick={onClose}>
+              <span>Annuler</span>
             </button>
           </div>
-        </div>
       </div>
     </div>
   );
