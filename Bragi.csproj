@@ -81,5 +81,6 @@
 
   <ItemGroup>
     <Folder Include="Storage\Avatars\" />
+    <Folder Include="Storage\Attachements\" />
   </ItemGroup>
 </Project>

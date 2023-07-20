@@ -16,5 +16,10 @@
         {
             return BCrypt.Net.BCrypt.Verify(password, HashPassword);
         }
+
+        public static implicit operator UserModel(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
