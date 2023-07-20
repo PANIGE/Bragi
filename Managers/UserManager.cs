@@ -105,12 +105,12 @@ namespace Bragi.Managers
                 Id = (int)user["id"],
                 LoginName = (string)user["login_name"],
                 DisplayName = (string)user["display_name"],
-                HashPassword = (string)user["hash_password"],
+                HashPassword = (string)user["pw_hash"],
                 Role = new RoleModel
                 {
                     Id = (int)user["role_id"],
                     Label = (string)user["label"],
-                    HoldRight = (int)user["hold_rights"] == 1
+                    HoldRight = (short.Parse(user["hold_rights"].ToString())) == 1
                 }
             };
 

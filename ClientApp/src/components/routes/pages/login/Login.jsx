@@ -15,8 +15,8 @@ export const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('/api/auth', {
-        username: username,
-        password: password,
+        "login": username,
+        "password": password,
       });
 
       showToast('Succès', 'Connexion réussie !' + response, 'success');

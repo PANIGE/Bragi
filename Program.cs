@@ -46,7 +46,7 @@ app.UseMiddleware<SessionMiddleWare>();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    pattern: "{controller}/{action=Index}/{ida?}");
 
 app.MapFallbackToFile("index.html");
 

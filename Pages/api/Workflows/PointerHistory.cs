@@ -44,18 +44,28 @@ namespace Bragi.Pages.api.Workflows
             return Ok(pointers);
 
         }
+        public class Form
+        {
+            public int StepId { get; set; }
+
+            public int UserId { get; set; }
+
+            public int StateId { get; set; }
+
+            public string Description { get; set; }
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Post(int id, [FromForm] int stepid, [FromForm] int userid, [FromForm] int stateid, [FromForm] string description)
+        public async Task<IActionResult> Post(int id, [FromBody] Form form)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
             {
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            StateModel? staid = await _workflowManager.GetStateById(stateid);
-            UserModel? uid = await _userManager.GetUserById(userid);
-            WStepModel? steid = await _workflowManager.GetWorkflowStepById(stepid);
+            StateModel? staid = await _workflowManager.GetStateById(form.StateId);
+            UserModel? uid = await _userManager.GetUserById(form.UserId);
+            WStepModel? steid = await _workflowManager.GetWorkflowStepById(form.StepId);
             if (staid != null)
             {
                 return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "stateID", "This state does not exist"));
@@ -69,7 +79,7 @@ namespace Bragi.Pages.api.Workflows
                 return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "stepID", "This step does not exist"));
             }
 
-            _workflowManager.InsertPointer(id, uid!, staid!, steid!, description);
+            _workflowManager.InsertPointer(id, uid!, staid!, steid!, form.Description);
 
             return Ok((await _workflowManager.GetPointers(id)).Last());
         }

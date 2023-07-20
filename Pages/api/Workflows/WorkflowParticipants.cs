@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace Bragi.Pages.api
 {
     [ApiController]
-    [Route("api/workflows/{id}/participants")]
     public class WorkflowParticipants : ControllerBase
     {
         private readonly HttpContext _context;
@@ -28,6 +27,8 @@ namespace Bragi.Pages.api
         }
 
         [HttpGet]
+
+        [Route("api/workflows/{id}/participants")]
         public async Task<IActionResult> Get(int id)
         {
 
@@ -54,6 +55,8 @@ namespace Bragi.Pages.api
         }
 
         [HttpPost]
+
+        [Route("api/workflows/{id}/participants")]
         public async Task<IActionResult> Post(int id, [FromForm] int userId, [FromForm] int stepId)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))

@@ -38,16 +38,26 @@ namespace Bragi.Pages.api
             return Ok(workflows);
         }
 
+
+        public class Form
+        {
+            public string Label { get; set; }
+            public string Description { get; set; }
+            public int StewardUser { get; set; }
+            public int MarketingUser { get; set; }
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] string label, [FromForm] string description, [FromForm] int stewardUser, [FromForm] int marketingUser)
+        public async Task<IActionResult> Post([FromBody] Form form)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
             {
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
 
-            var su = await _userManager.GetUserById(stewardUser);
-            var mu = await _userManager.GetUserById(marketingUser);
+            var su = await _userManager.GetUserById(form.StewardUser);
+            var mu = await _userManager.GetUserById(form.MarketingUser);
             if (mu != null)
             {
                 return NotFound(this.GetStatusError(HttpStatusCode.NotFound, "stewardUser", "stewardUser do not exist"));
@@ -60,8 +70,8 @@ namespace Bragi.Pages.api
             WorkflowModel model = new WorkflowModel()
             {
                 Id = 0,
-                Label = label,
-                Description = description,
+                Label = form.Label,
+                Description = form.Description,
                 StewardUser = su!,
                 MarketingUser = mu!,
                 DateCreation = DateTimeOffset.Now,

@@ -7,11 +7,11 @@ using Bragi.Models.Workflows.Axes;
 using Bragi.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Bragi.Pages.api.Workflows
 {
     [ApiController]
-    [Route("api/pointers/{id}/attachements")]
     public class Attachements : ControllerBase
     {
         private readonly HttpContext _context;
@@ -30,6 +30,8 @@ namespace Bragi.Pages.api.Workflows
         }
 
         [HttpGet]
+
+        [Route("api/pointers/{id}/attachements")]
         public async Task<IActionResult> Get(int id)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
@@ -63,6 +65,8 @@ namespace Bragi.Pages.api.Workflows
         }
 
         [HttpPost]
+
+        [Route("api/pointers/{id}/attachements")]
         public async Task<IActionResult> Post(int id, [FromForm] IFormFile file)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
@@ -75,7 +79,10 @@ namespace Bragi.Pages.api.Workflows
 
             string fileName = $"{pointer.Workflow.Label} - {pointer.Step.Label} - {StringUtils.RandomString(8)}{Path.GetExtension(file.FileName)}";
 
-            await System.IO.File.WriteAllBytesAsync($"./attachements/{fileName}", await file.GetBytesAsync());
+            await using (FileStream stream = System.IO.File.Create($"./attachements/{fileName}"))
+            {
+                await file.CopyToAsync(stream);
+            }
 
             await _databaseManager.Execute("INSERT INTO attachements (pointer_id, filename) VALUES (@pointer_id, @filename)",
                 new Dictionary<string, object>()

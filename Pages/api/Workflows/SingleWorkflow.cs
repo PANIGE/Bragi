@@ -41,9 +41,16 @@ namespace Bragi.Pages.api
             return Ok(workflow);
         }
 
+        public class Form
+        {
+            public string Label { get; set; }
+            public string Description { get; set; }
+            public int? MarketingUser { get; set; }
+            public long UnixRelease { get; set; }
+        }
+
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromForm] string label, [FromForm] string description, 
-                                            [FromForm] int? marketingUser, [FromForm] long unixRelease)
+        public async Task<IActionResult> Put(int id, [FromBody] Form form)
         {
             if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
             {
@@ -57,10 +64,10 @@ namespace Bragi.Pages.api
 
             Dictionary<string, object?> parameters = new()
             {
-                ["label"] = label,
-                ["description"] = description,
-                ["marketing"] = marketingUser,
-                ["datetime"] = DateTimeOffset.FromUnixTimeSeconds(unixRelease).ToString("G"),
+                ["label"] = form.Label,
+                ["description"] = form.Description,
+                ["marketing"] = form.MarketingUser,
+                ["datetime"] = DateTimeOffset.FromUnixTimeSeconds(form.UnixRelease).ToString("G"),
             };
 
             await _databaseManager.Execute("UPDATE workflows SET label = @label, " +

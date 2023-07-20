@@ -21,8 +21,14 @@ namespace Bragi.Pages.api
             _sessionManager = sessionManager;
         }
 
+        public class AuthModel
+        {
+            public string Login { get; set; }
+            public string Password { get; set; }
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] string login, [FromForm] string password)
+        public async Task<IActionResult> Post([FromBody] AuthModel login)
         {
 
             _context.Items.TryGetValue("session", out object? session);
@@ -31,13 +37,13 @@ namespace Bragi.Pages.api
 				return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "auth", "You are already logged in"));
 			}
 
-            UserModel? user = await _userManager.GetUserByLogin(login);
+            UserModel? user = await _userManager.GetUserByLogin(login.Login);
             if (user == null)
             {
 				return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "auth", "Invalid login or password"));
 			}
 
-            if (!user.CheckPassword(password))
+            if (!user.CheckPassword(login.Password))
             {
 				return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "auth", "Invalid login or password"));
             }
