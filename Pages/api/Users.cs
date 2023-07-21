@@ -68,6 +68,10 @@ namespace Bragi.Pages.api
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
             }
             RoleModel? roleResult = await _userManager.GetRoleById(role);
+            if (roleResult == null)
+            {
+                return NotFound();
+            }
             IEnumerable<UserModel> ? users = await _userManager.GetAllUserWithRole(roleResult!);
 
             return Ok(users);
