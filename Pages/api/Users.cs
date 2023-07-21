@@ -58,5 +58,19 @@ namespace Bragi.Pages.api
 
             return Ok(await _databaseManager.FetchAll<int>("SELECT id FROM users WHERE login_name LIKE @query OR display_name LIKE @query", new Dictionary<string, object>() { ["query"] = $"%{query}%" }));
         }
+
+        [HttpGet]
+        [Route("/api/user/{role}/role")]
+        public async Task<IActionResult> GetByRole(int role)
+        {
+            if (!_sessionManager.CheckSession(_context.Request.Headers["session"].FirstOrDefault() ?? string.Empty))
+            {
+                return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "session", "Invalid session"));
+            }
+            RoleModel? roleResult = await _userManager.GetRoleById(role);
+            IEnumerable<UserModel> ? users = await _userManager.GetAllUserWithRole(roleResult!);
+
+            return Ok(users);
+        }
     }
 }

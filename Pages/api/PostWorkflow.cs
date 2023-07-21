@@ -33,11 +33,14 @@ namespace Bragi.Pages.api
             SessionModel session = (_context.Items["session"] as SessionModel)!;
             if (!session.IsLoggedIn)
                 return Unauthorized(this.GetStatusError(HttpStatusCode.Unauthorized, "auth", "Need Login"));
+
+            UserModel? marketingUser = await _userManager.GetUserById((int)data["MarketingId"]);
             var model = new WorkflowModel()
             {
                 Id = -1,
                 Label = (string)data["Label"],
                 Description = (string)data["Description"],
+                MarketingUser = marketingUser,
                 StewardUser = session.User!,
                 DateCreation = DateTimeOffset.UtcNow,
             };
