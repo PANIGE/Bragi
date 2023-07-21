@@ -91,3 +91,31 @@
     background-color: var(--blue-550);
 }
 
+.btn-red {
+    background-color: var(--red);
+    color: var(--gray-100);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-red:hover {
+    background-color: var(--red-400);
+    transition: 0.2s;
+
+    color: var(--gray-100);
+
+    cursor: pointer;
+}
+
+.btn-red:active {
+    background-color: var(--red-550);
+}
+
+
+
+
+

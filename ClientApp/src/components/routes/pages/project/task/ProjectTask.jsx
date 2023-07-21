@@ -2,8 +2,22 @@ import React from "react";
 
 import {Header} from "./../../../../layout/header/Header.jsx";
 
+import {ProjectListCard} from "./../../../../layout/project/ProjectListCardX.jsx";
+
+import "./projectTask.css";
 
 export function ProjectTask () {
+
+    
+    const users = [
+        { id: 1, username: 'Alice_Martin', role: 'monteur' },
+        { id: 2, username: 'David_Johnson', role: 'rédacteur' },
+        { id: 3, username: 'Emma_Lee', role: 'traducteur' },
+        { id: 4, username: 'James_Smith', role: 'cameraman' },
+        { id: 5, username: 'Olivia_Wang', role: 'monteur' },
+        { id: 6, username: 'Michael_Brown', role: 'rédacteur' },
+        { id: 7, username: 'Sophia_Chen', role: 'traducteur' },
+      ];
 
     return (
         <div className="projectContainer">
@@ -13,38 +27,10 @@ export function ProjectTask () {
                 <p> Liste des projets </p>
             </div>
             <div className="projectTask">
-                <div className="waintingTask">
-                    <div className="waintingTaskHeader">
-                        <h3>En attente</h3>
-                        <p>En attente de validation</p>
-                    </div>
-                    <div className="waintingTaskContent">
-                    </div>
-                </div>
-                <div className="inProgressTask">
-                    <div className="inProgressTaskHeader">
-                        <h3>En cours</h3>
-                        <p>En cours de validation</p>
-                    </div>
-                    <div className="inProgressTaskContent">
-                    </div>
-                </div>
-                <div className="waitingUploadTask">
-                    <div className="waitingUploadTaskHeader">
-                        <h3>En attente de téléchargement</h3>
-                        <p>En attente de téléchargement</p>
-                    </div>
-                    <div className="waitingUploadTaskContent">
-                    </div>
-                </div>
-                <div className="doneTask">
-                    <div className="doneTaskHeader">
-                        <h3>Terminé</h3>
-                        <p>Terminé</p>
-                    </div>
-                    <div className="doneTaskContent">
-                    </div>
-                </div>
+            <ProjectListCard state={"En attente de validation"} />
+            <ProjectListCard state={"En attente de réception"} />
+            <ProjectListCard state={"Tâches terminées"} />
+            
             </div>
         </div>
     );

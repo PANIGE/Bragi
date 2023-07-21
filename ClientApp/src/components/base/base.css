@@ -72,4 +72,46 @@
 .errorMessage {
     color: red;
     font-size: 16px;
-  }
+}
+
+.seeMore {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    column-gap: 10px;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-600);
+}
+
+.seeMore:hover {
+    color: var(--blue-300);
+}
+
+.contentHeader {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    column-gap: 10px;
+}
+
+.contentHeader h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.contentHeader p {
+    font-size: 18px;
+    font-weight: 400;
+}

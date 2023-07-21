@@ -13,12 +13,12 @@ export function ProjectList () {
             <Header />
             <div className="contentHeader">
                 <h2>Projets</h2>
-                <p> Liste des projets </p>
+                <p> Visualisez vos projets en cours, passés et à venir. Cliquez sur un projet pour obtenir plus d'informations pour ensuite ajouter vos rushs. </p>
             </div>
             <div className="projectList">
-                <ProjectListCard />
-                <ProjectListCard />
-                <ProjectListCard />
+                <ProjectListCard state={"En cours"} />
+                <ProjectListCard state={"terminé"} />
+                <ProjectListCard state={"A venir"} />
             </div>
         </div>
     );

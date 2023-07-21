@@ -1,18 +1,18 @@
 import React from 'react';
 
 import './project.css';
+import './projectHoryzontal.css';
 
-export function ProjectListCard({ state }) {
-
-    // 3 states : En cours, terminé, à venir with different colors
+export function ProjectListCard({ state, users }) {
 
     const stateColor = () => {
         switch (state) {
-            case "En cours":
+            case "En attente de validation":
                 return "#FFA500";
-            case "terminé":
+            case "En attente de réception":
                 return "#4ECD00";
-            case "A venir":
+            case "Tâches terminées":
+
                 return "#0094FF";
             default:
                 return "#0094FF";
@@ -31,31 +31,29 @@ export function ProjectListCard({ state }) {
                 <span className="bar" style={{ backgroundColor: stateColor() }}></span>
             </div>
             <div className="projectListCardContent">
-                <div className="projectCard" style={{ width: "100%" }}>
+                <div className="projectCard">
                     <div className="projectCardHeader">
 
                         <span className="date" style={{ color: stateColor(), backgroundColor: stateColor() + "33" }}>
-                            00/00/00</span>
+                            {users ? users.username : "error"}
+                            </span>
                         <button className="projectCardButton">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                     </div>
-                    <span className="projectCardTitle">Projet 1</span>
-                    <span className="projectCardImg" ></span>
-                    <div className="projectCardTeam">
-                        <div className="projectCardTeamMember">
-                            <div className="memberContainer">
-                                <span className="member"></span>
-                                <span className="member"></span>
-                                <span className="member"></span>
-                            </div>
-                            <div className="memberContainer">
-                                Régisseur :
-                                <span className="member"></span>
-                            </div>
+                    <span className="taskCardTitle">Name</span>
+                </div>
+                <div className="projectCard">
+                    <div className="projectCardHeader">
 
-                        </div>
+                        <span className="date" style={{ color: stateColor(), backgroundColor: stateColor() + "33" }}>
+                            {users ? users.username : "error"}
+                            </span>
+                        <button className="projectCardButton">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
                     </div>
+                    <span className="taskCardTitle">Name</span>
                 </div>
 
             </div>

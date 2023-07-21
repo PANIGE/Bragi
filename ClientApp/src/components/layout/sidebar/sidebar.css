@@ -8,7 +8,8 @@
     justify-content: flex-start;
     row-gap: 10vh;
 
-    background: linear-gradient(120deg, #F9EEEB 0%, #E0E2E4 100%);
+    /* // background: linear-gradient(120deg, #F9EEEB 0%, #E0E2E4 100%); */
+    background: var(--gray-300);
     padding: 30px;  
 }
 

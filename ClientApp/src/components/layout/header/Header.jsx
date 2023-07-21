@@ -5,7 +5,7 @@ import SmartButton from '../../base/Button.jsx';
 
 import './header.css';
 
-export function Header() {
+export function Header( { page } ) {
   const [isSettingsHovered, setIsSettingsHovered] = useState(false);
 
   const handleSettingsMouseEnter = () => {
@@ -19,7 +19,7 @@ export function Header() {
   return (
     <div className="headerContainer">
       <div className="headerNav">
-        <h2>Dashboard</h2>
+        <h2>{page}</h2>
         <div className="headerNavLinks">
           <NavLink  to="/new-projects" className="headerNavLink">Nouveau</NavLink>
           <NavLink

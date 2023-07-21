@@ -6,17 +6,29 @@ import SmartButton from './../../base/Button';
 import './sidebar.css';
 
 const Sidebar = () => {
+
+    const currentUser = {
+        "id": 1,
+        "password": "password",
+        "role": "Marketing",
+        "fullName": "Jean Dupont",
+        "email": "Jean.dupont@exemple.com",
+    };
+
+
     return (
         <div className="sidebarContainer">
             <div className="sidebarHeader">
-            <NavLink to="/profil" className="SidebarLink" activeclassname="activeNavLink">
+            <NavLink to="/profil"  activeclassname="activeNavLink">
                 <span id="userIcon"></span>
             </NavLink>
                 <span className="userIdentity">
-                    <span className="userName">John Doe</span>
-                    <span className="userRole">Administrateur</span>
+                    <span className="userName">{currentUser.fullName}</span>
+                    <span className="userRole">{currentUser.role}</span>
                 </span>
-                <SmartButton width={50} height={50} color="transparent" iconClass="fas fa-cog fa-2xl" />
+                <NavLink to="/notifications" activeclassname="activeNavLink">
+                <SmartButton width={50} height={50} color="transparent" iconClass="fas fa-bell fa-xl" />
+                </NavLink>
             </div>
             <div className="sidebarNav">
                 <NavLink to="/dashboard" className="SidebarLink" activeclassname="activeNavLink">

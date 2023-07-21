@@ -27,4 +27,17 @@ function UploadButton() {
   );
 }
 
-export default UploadButton;
+
+
+export function FileUpload() {
+  return (
+    <div className="fileUploadContainer">
+      <div className="fileUploadContent">
+        <div className="leftContent">
+          </div>
+        <div className="rightContent">
+          </div>
+      </div>
+    </div>
+  );
+}
