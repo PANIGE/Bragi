@@ -66,3 +66,28 @@
 .btn-black:active {
     background-color: var(--gray-600);
 }
+
+.btn-blue {
+    background-color: var(--blue-450);
+    color: var(--gray-100);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-blue:hover {
+    background-color: var(--blue-400);
+    transition: 0.2s;
+
+    color: var(--gray-100);
+
+    cursor: pointer;
+}
+
+.btn-blue:active {
+    background-color: var(--blue-550);
+}
+

@@ -116,7 +116,10 @@ namespace Bragi.Managers
             while (await Reader.ReadAsync())
             {
                 Dictionary<string, T> row = new();
-
+                for(int i = 0; i < Reader!.FieldCount; i++)
+                {
+                    row[Reader.GetName(i)] = (T)Reader.GetValue(i);
+                }
                 result.Add(row);
             }
 

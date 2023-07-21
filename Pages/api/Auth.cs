@@ -37,7 +37,7 @@ namespace Bragi.Pages.api
 				return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "auth", "You are already logged in"));
 			}
 
-            UserModel? user = await _userManager.GetUserByLogin(login.Login);
+            UserModel? user = await _userManager.GetUserByLogin(login.Login, true);
             if (user == null)
             {
 				return BadRequest(this.GetStatusError(HttpStatusCode.BadRequest, "auth", "Invalid login or password"));

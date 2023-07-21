@@ -1,49 +1,43 @@
-import React from 'react';
-import './profil.css';
-import { ModalButton } from './../../../base/modalButton/ModalButton.jsx';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export function Profil () {
-  const profil = {
-    titre: 'Informations personnelle',
-    description: 'Pour éditer vos informations prenez contact avec l\'organisme administratif',
-    metier: 'Régisseur',
-    photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.tjUOUBGnthmW762mbRAFdQHaE8%26pid%3DApi&f=1&ipt=1d332fcd1e14de39844b9fc93c596509c0f3ea0d339e91f5b1ead65670824628&ipo=images',
-    nom: 'Ritchard',
-    prenom: 'Samuel',
-    lieuTravail: 'Paris, Lille',
-    mail: 'samuel.ritchard@mail.com',
-    numeroTelephone: '+336 87 87 56 44'
-  };
+export function Profil() {
+  const [user, setUser] = useState(null);
+  const token = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('/api/users', {
+            "session": token,
+        });
+
+        setUser(response.data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des informations utilisateur :', error);
+      }
+    };
+
+    if (token) {
+      fetchUserData();
+    }
+  }, [token]);
+
+  if (!token) {
+    return <div>Veuillez vous connecter pour accéder à votre profil.</div>;
+  }
+
+  if (!user) {
+    return <div>Chargement...</div>;
+  }
 
   return (
-    <div className="profil">
-      <div className="profil-header">
-        <h1>{profil.titre}</h1>
-        <p>{profil.description}</p>
-      </div>
-      <div className="info-container">
-        <div className="metier">
-          <h2>{profil.metier}</h2>
-        </div>
-        <div className="content-info">
-          <div className="photo-container">
-            <img src={profil.photo} alt='Profil face'/>
-          </div>
-          <div className="profil-info">
-            <h3>{`${profil.prenom} ${profil.nom}`}</h3>
-            <p>Lieu de travail : {profil.lieuTravail}</p>
-          </div>
-          <ModalButton/>
-        </div>
-      </div>
-      <div className="info-container">
-      <div className="contact">
-       <p>Nom : {`${profil.nom}`}</p>
-       <p>Prénom : {`${profil.prenom}`}</p>
-        <p>Mail : {profil.mail}</p>
-        <p>Téléphone : {profil.numeroTelephone}</p>
-        </div>
-      </div>
+    <div className="profileContainer">
+      <h2>Profil de l'utilisateur</h2>
+      <p>Nom d'utilisateur : {user.LoginName}</p>
+      <p>Nom affiché : {user.DisplayName}</p>
+      <p>Rôle : {user.Role.Label}</p>
+      {/* Vous pouvez afficher d'autres informations de l'utilisateur en utilisant les propriétés du modèle */}
     </div>
   );
 };

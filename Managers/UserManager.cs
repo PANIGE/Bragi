@@ -72,7 +72,7 @@ namespace Bragi.Managers
         /// </summary>
         /// <param name="login">login name of the user</param>
         /// <returns>the specific user</returns>
-        public async Task<UserModel?> GetUserByLogin(string login)
+        public async Task<UserModel?> GetUserByLogin(string login, bool showPassword = false)
         {
             var userId = await _dbManager.FetchOne<int>("SELECT id FROM users WHERE login_name = @login", 
                 new Dictionary<string, object>() { ["login"] = login });
@@ -80,7 +80,7 @@ namespace Bragi.Managers
             if (userId == null)
                 return null;
 
-            return await GetUserById(userId["id"]);
+            return await GetUserById(userId["id"], showPassword);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Bragi.Managers
         /// </summary>
         /// <param name="id">id of the user</param>
         /// <returns>the user</returns>
-        public async Task<UserModel?> GetUserById(int id)
+        public async Task<UserModel?> GetUserById(int id, bool showPassword = false)
         {
             var user = await _dbManager.FetchOne("SELECT " +
                                                  "u.id, u.login_name, u.display_name, " +
@@ -105,7 +105,7 @@ namespace Bragi.Managers
                 Id = (int)user["id"],
                 LoginName = (string)user["login_name"],
                 DisplayName = (string)user["display_name"],
-                HashPassword = (string)user["pw_hash"],
+                HashPassword = showPassword ? (string)user["pw_hash"] : "secret potato",
                 Role = new RoleModel
                 {
                     Id = (int)user["role_id"],
