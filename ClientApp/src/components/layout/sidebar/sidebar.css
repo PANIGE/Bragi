@@ -9,7 +9,7 @@
     row-gap: 10vh;
 
     /* // background: linear-gradient(120deg, #F9EEEB 0%, #E0E2E4 100%); */
-    background: var(--gray-300);
+    background: var(--gray-200);
     padding: 30px;  
 }
 
@@ -27,19 +27,15 @@
     transition: 0.2s;
 }
 
-#userIcon{
-    width: 50px;
-    height: 50px;
+.sidebarHeader:hover {
+    background-color: var(--gray-200);
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    text-decoration: none;
+    color: var(--gray-800);
 
-    border-radius: 5px;
-    background-image: url("https://images.pexels.com/photos/9950569/pexels-photo-9950569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    background-size: cover;
+    transition: 0.2s;
 }
+
 
 .userIdentity{
     width: auto;
@@ -54,9 +50,21 @@
     padding: 0 10px 0 10px;
     font-size: 16px;
     font-weight: 500;
-
 }
 
+#userName{
+    color: var(--gray-800);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#userRole{
+    color: var(--blue-450 );
+
+    font-size: 14px;
+    font-weight: 500;
+}
 .sidebarNav {
     width: 100%;
     height: auto;
@@ -80,10 +88,10 @@
     column-gap: 30px;
 
     font-size: 18px;
+    font-weight: 700;
 
     padding: 0 20px 0 20px;
     border-radius: 10px;
-    transition: 0.2s;
     color: var(--gray-700);
 }
 
@@ -93,7 +101,14 @@
     text-decoration: none;
     color: var(--gray-100);
 
-    transition: 0.2s;
+}
+
+.SidebarLink.active {
+    background-color: var(--gray-100);
+
+    text-decoration: none;
+    color: var(--gray-800);
+
 }
 
 .activeNavLink {
@@ -112,4 +127,21 @@
     color: var(--gray-200);
 
     transition: 0.2s;
+}
+
+.sidebarTextDivider {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-700);
+
+
+    border-bottom: 1px solid var(--gray-700);
 }

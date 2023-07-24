@@ -17,13 +17,13 @@ export function Modal ({ open, onClose }) {
           <p className='closeBtn' onClick={onClose}>X</p>
           <div className='report-choice'>
           <button className="button 1" onclick="clickBlue(1)">
-              <i class="fa-regular fa-circle-xmark fa-2xl"></i>
+              <i className="fa-regular fa-circle-xmark fa-2xl"></i>
             </button>
             <button className="button 2" onclick="clickBlue(1)">
-              <i class="fa-regular fa-circle-exclamation fa-2xl"></i>
+              <i className="fa-regular fa-circle-exclamation fa-2xl"></i>
             </button>
             <button className="button 3" onclick="clickBlue(1)">
-              <i class="fa-regular fa-circle-check fa-2xl"></i>
+              <i className="fa-regular fa-circle-check fa-2xl"></i>
             </button>
           </div>
           <div className='report-info'>

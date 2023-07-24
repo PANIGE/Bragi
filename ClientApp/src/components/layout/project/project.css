@@ -16,9 +16,7 @@
     padding: 30px;
     border: 2px solid var(--gray-300);
 
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: var(--gray-300) transparent;
+    overflow-y: hidden;
 
 }
 .circle {
@@ -80,12 +78,23 @@
     align-items: flex-start;
     justify-content: flex-start;
     row-gap: 10px;
-}
-::-webkit-scrollbar {
-    width: 5px;
-}
 
+    border-radius: 10px;
 
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-800);
+
+    overflow-y: scroll;
+
+    scrollbar-width: none; 
+    -ms-overflow-style: none;  
+    
+}
+::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
 
 
 
@@ -219,4 +228,95 @@
     height: 2px;
 
     background: var(--gray-300);
+}
+
+.projectCardDescription{
+
+    width: 100%;
+    height: auto;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 10px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-800);
+
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+
+.projectCardDescriptionText {
+
+    width: 100%;
+    height: auto;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gray-800);
+
+    text-align: justify;
+    text-justify: inter-word;
+
+    overflow-y: scroll;
+
+    
+}
+
+.projectCardDescriptionTask {
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 10px;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    text-align: justify;
+    text-justify: inter-word;
+
+    overflow-y: scroll;
+}
+
+.taskName{
+    width: 100%;
+    height: 20px;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gray-800);
+}
+
+.taskDescription {
+    width: 100%;
+    height: auto;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gray-500);
+
+    text-align: justify;
+    text-justify: inter-word;
+
+    overflow-y: scroll;
+}
+
+.projectCardDescriptionTitle {
+    width: 100%;
+    height: 20px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-800);
 }

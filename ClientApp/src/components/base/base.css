@@ -115,3 +115,9 @@
     font-size: 18px;
     font-weight: 400;
 }
+
+
+.chakra-breadcrumb__list {
+    padding: 0;
+    margin: 0;
+}

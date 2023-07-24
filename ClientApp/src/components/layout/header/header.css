@@ -32,20 +32,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    column-gap: 20px;
+    column-gap: 1.5rem;
 
 }
-
-.headerNavLinks .btn-black:hover i.fa-spin {
-    animation: spin 2s infinite linear;
-  }
-  
-  /* Keyframes animation for the spinning effect */
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }

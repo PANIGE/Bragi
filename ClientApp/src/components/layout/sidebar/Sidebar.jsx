@@ -1,7 +1,10 @@
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
-import SmartButton from './../../base/Button';
+import { IconButton } from '@chakra-ui/react';
+import { Avatar } from '@chakra-ui/react';
+
+import { Box, Divider, AbsoluteCenter } from '@chakra-ui/react';
 
 import './sidebar.css';
 
@@ -10,6 +13,7 @@ const Sidebar = () => {
     const currentUser = {
         "id": 1,
         "password": "password",
+        'image': 'https://bit.ly/broken-link',
         "role": "Marketing",
         "fullName": "Jean Dupont",
         "email": "Jean.dupont@exemple.com",
@@ -18,46 +22,42 @@ const Sidebar = () => {
 
     return (
         <div className="sidebarContainer">
-            <div className="sidebarHeader">
-            <NavLink to="/profil"  activeclassname="activeNavLink">
-                <span id="userIcon"></span>
-            </NavLink>
+            <NavLink to="/profil" activeclassname="activeNavLink" className="sidebarHeader">
+                <Avatar name={currentUser.fullName} src={currentUser.image} size="lg" />
                 <span className="userIdentity">
-                    <span className="userName">{currentUser.fullName}</span>
-                    <span className="userRole">{currentUser.role}</span>
+                    <span id="userName">{currentUser.fullName}</span>
+                    <span id="userRole">{currentUser.role}</span>
                 </span>
                 <NavLink to="/notifications" activeclassname="activeNavLink">
-                <SmartButton width={50} height={50} color="transparent" iconClass="fas fa-bell fa-xl" />
+                    <IconButton aria-label='Notifications' variant='ghost'
+                        icon={<i className="fas fa-bell fa-xl"></i>} />
                 </NavLink>
-            </div>
+            </NavLink>
             <div className="sidebarNav">
                 <NavLink to="/dashboard" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fa-sharp fa-regular fa-gear fa-xl"></i>
+                    <i className="fa-duotone fa-house fa-xl"></i>
                     Dashboard
                 </NavLink>
-                <NavLink to="/projects" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fas fa-project-diagram fa-xl"></i>
-                    Projets
+                <NavLink to="/my-projects" className="SidebarLink" activeclassname="activeNavLink">
+                    <i className="fa-duotone fa-folder-open fa-xl"></i>
+
+                    Mes projets
                 </NavLink>
                 <NavLink to="/tasks" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fas fa-tasks fa-xl"></i>
+                    <i className="fa-duotone fa-list-check fa-xl"></i>
                     Tâches
                 </NavLink>
-                <NavLink to="/notifications" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fas fa-bell fa-xl"></i>
-                    Notifications
+                <span className="sidebarTextDivider">
+                    Aperçu d'autres pages
+                </span>
+                <NavLink to="/montage-upload" className="SidebarLink" activeclassname="activeNavLink">
+                    <i class="fa-duotone fa-films fa-xl"></i>
+                    Envoi de montage
                 </NavLink>
-                
-                <NavLink to="/upload" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fas fa-upload fa-xl"></i>
-                    Envoyer un fichier
+                <NavLink to="/rushs-upload" className="SidebarLink" activeclassname="activeNavLink">
+                    <i class="fa-duotone fa-camera-movie fa-xl"></i>
+                    Envoi de rushs
                 </NavLink>
-                <NavLink to="/help" className="SidebarLink" activeclassname="activeNavLink">
-                    <i className="fas fa-question-circle fa-xl"></i>
-                    Aide
-                </NavLink>
-
-
             </div>
         </div>
     );

@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-import './profil.css';
-import SmartButton from './../../../base/Button';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import { Header } from './../../../layout/header/Header';
+// import axios from 'axios';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink , Button,Avatar} from '@chakra-ui/react';
+import './profil.css';
+// import { accountService } from '@service/account.service';
+
+
+
+import Header from 'src/components/layout/header/Header.jsx';
+
 
 export function Profil() {
+
+  document.title = 'Bragi - Profil';
 
   const currentUser = {
     "id": 1,
@@ -46,13 +54,30 @@ export function Profil() {
 */
   return (
     <div className="profileContainer">
-      <Header page="profil" />
+      <Header 
+      leftContent={
+        <Breadcrumb fontWeight='bold' fontSize='2xl' align='center' separator='/' flexDir='row' justifyContent='center' >
+          <BreadcrumbItem isCurrentPage>
+            <BreadcrumbLink href='#'>Profil</BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
+      }
+      rightContent={
+        <div className="headerNavLinks">
+          <NavLink to="/help" className="link">
+            Besoin d’aide ?
+          </NavLink>
+        </div>
+      }
+      >
+ 
+      </Header>
       <div className="profileCard">
         <span className="roleSection">
           {currentUser.role}
         </span>
         <div className="profileContent">
-          <span id="profileAvatar"></span>
+        <Avatar name={currentUser.fullName} src={currentUser.image} height={"250px"} width={"250px"} />
           <div className="container">
             <div className="profileInfo">
               <div id="profileName">
@@ -68,9 +93,11 @@ export function Profil() {
                 <span className='userData'>*************</span>
               </div>
             </div>
-            <SmartButton color="gray" width={200} height={50} iconClass="fas fa-sign-out-alt">
-              Logout
-            </SmartButton>
+              <Button leftIcon={<i className="fas fa-sign-out-alt"></i>} 
+              width={200} height={50} colorScheme='red' variant='solid'
+              onClick={() => { window.location.href = '/login'; }}>
+                Déconnexion
+              </Button>
           </div>
         </div>
       </div>

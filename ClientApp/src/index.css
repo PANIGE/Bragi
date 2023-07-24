@@ -97,3 +97,7 @@ a{
 ul{
   list-style: none;
 }
+
+.AppContent {
+  background-color: var(--gray-200);
+}

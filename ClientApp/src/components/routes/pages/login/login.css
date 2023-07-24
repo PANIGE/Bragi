@@ -53,7 +53,7 @@
     align-items: center;
     justify-content: center;
 
-    row-gap: 20px;
+    row-gap: 4rem;
 }
 
 .loginContent .speach {
@@ -91,5 +91,5 @@
     align-items: center;
     justify-content: center;
 
-    row-gap: 20px;
+    row-gap: 3rem;
 }

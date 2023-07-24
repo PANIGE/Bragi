@@ -36,8 +36,8 @@ const DonutChart = () => {
         colorByPoint: true,
         data: [
           { name: 'en cours', y: 1 },
-          { name: 'terminé', y: 2 },
-          { name: 'à venir', y: 2 },
+          { name: 'terminé', y: 1 },
+          { name: 'à venir', y: 1 },
         ],
       },
     ],

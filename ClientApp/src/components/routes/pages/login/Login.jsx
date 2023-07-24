@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import SmartButton from './../../../base/Button';
 import axios from 'axios';
-import showToast from './../../../base/Toaster';
+import showToast from 'src/components/base/Toaster.jsx';
+
+import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react"
 
 import './login.css';
 
 export const Login = () => {
+  const [show, setShow] = React.useState(false)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  document.title = 'Bragi - Connexion';
+
+  const handleClick = () => setShow(!show)
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -31,8 +37,8 @@ export const Login = () => {
 
       showToast('Succès', 'Connexion réussie !', 'success');
       // redirect to new-projects page
+      window.location.href = '/dashboard';
 
-      
 
     } catch (error) {
       console.error('Erreur lors de la connexion :', error);
@@ -57,34 +63,40 @@ export const Login = () => {
           <div className="loginForm">
             <div className="verticalContainer">
               <label htmlFor="mail">Nom d’utilisateur</label>
-              <input
-                className="textInput"
-                type="text"
+              <Input placeholder="entrez votre nom d'utilisateur" size='lg'
                 value={username}
                 onChange={(e) => {
                   setError('');
                   setUsername(e.target.value);
                 }}
+
+                height="60px"
               />
               {error && <span className="errorMessage">{error}</span>}
             </div>
             <div className="verticalContainer">
               <label htmlFor="password">Mot de passe</label>
-              <input
-                className="textInput"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setError('');
-                  setPassword(e.target.value);
-                }}
-              />
+
+              <InputGroup size='lg'>
+                <Input
+                  height="60px"
+                  type={show ? 'text' : 'password'}
+                  placeholder='Entrez votre mot de passe'
+                  value={password}
+                  onChange={(e) => {
+                    setError('');
+                    setPassword(e.target.value);
+                  }}
+                />
+
+              </InputGroup>
               {error && <span className="errorMessage">{error}</span>}
             </div>
           </div>
-          <SmartButton width={200} height={50} onClick={handleLogin} color="blue">
-            Se connecter
-          </SmartButton>
+          <Button onClick={handleLogin} size='lg' height="60px" width="100%" colorScheme="blue" variant="outline">
+            Connexion
+          </Button>
+          
         </div>
       </div>
     </div>

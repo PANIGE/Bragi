@@ -2,7 +2,7 @@ import React from 'react';
 
 import './project.css';
 
-export function ProjectListCard({ state }) {
+export function ProjectListCard({ state, children }) {
 
     // 3 states : En cours, terminé, à venir with different colors
 
@@ -10,7 +10,7 @@ export function ProjectListCard({ state }) {
         switch (state) {
             case "En cours":
                 return "#FFA500";
-            case "terminé":
+            case "Terminé":
                 return "#4ECD00";
             case "A venir":
                 return "#0094FF";
@@ -26,38 +26,12 @@ export function ProjectListCard({ state }) {
                     <span className="circle" style={{ backgroundColor: stateColor() }}>
 
                     </span>
-                    <span className="progressionType">En cours</span>
+                    <span className="progressionType">{state}</span>
                 </div>
                 <span className="bar" style={{ backgroundColor: stateColor() }}></span>
             </div>
             <div className="projectListCardContent">
-                <div className="projectCard" style={{ width: "100%" }}>
-                    <div className="projectCardHeader">
-
-                        <span className="date" style={{ color: stateColor(), backgroundColor: stateColor() + "33" }}>
-                            00/00/00</span>
-                        <button className="projectCardButton">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </button>
-                    </div>
-                    <span className="projectCardTitle">Projet 1</span>
-                    <span className="projectCardImg" ></span>
-                    <div className="projectCardTeam">
-                        <div className="projectCardTeamMember">
-                            <div className="memberContainer">
-                                <span className="member"></span>
-                                <span className="member"></span>
-                                <span className="member"></span>
-                            </div>
-                            <div className="memberContainer">
-                                Régisseur :
-                                <span className="member"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+                {children}
             </div>
         
         </div>
